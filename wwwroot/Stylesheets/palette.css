@@ -11,10 +11,10 @@
 
 .dark-mode {
   --color-primary: #323232;
-  --color-secondary: #0d3952;
-  --color-tertiary: #302649;
-  --color-secondary-two: #134d47;
-  --color-tertiary-two: #3f2435;
+  --color-secondary: #114461;
+  --color-tertiary: #3b2e5f;
+  --color-secondary-two: #15544e;
+  --color-tertiary-two: #4e2e41;
 
   --text-primary: #ededed;
 }
