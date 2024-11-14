@@ -1,0 +1,72 @@
+:root {
+  --color-primary: #cdfdd6be;
+  --color-secondary: #c9e7f8;
+  --color-tertiary: #e7e2f3;
+  --color-secondary-two: #d6fffb;
+  --color-tertiary-two: #f9f1f6;
+
+  --text-primary: #131313fd;
+  --shadow: #0e0e0e1e;
+}
+
+.dark-mode {
+  --color-primary: #323232;
+  --color-secondary: #0d3952;
+  --color-tertiary: #302649;
+  --color-secondary-two: #134d47;
+  --color-tertiary-two: #3f2435;
+
+  --text-primary: #ededed;
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+  box-shadow: 12px 15px var(--shadow);
+}
+
+.bg-secondary {
+  background-color: var(--color-secondary);
+}
+
+.bg-tertiary {
+  background-color: var(--color-tertiary);
+}
+
+.bg-secondary2 {
+  background-color: var(--color-secondary-two);
+}
+
+.bg-tertiary2 {
+  background-color: var(--color-tertiary-two);
+}
+
+.fg-primary {
+  color: var(--text-primary);
+}
+
+.bg-linear1 {
+  background-image: linear-gradient(
+    var(--color-secondary),
+    var(--color-tertiary)
+  );
+}
+
+.bg-linear2 {
+  background-image: linear-gradient(
+    var(--color-tertiary),
+    var(--color-secondary)
+  );
+}
+
+.bg-linear3 {
+  background-image: linear-gradient(
+    var(--color-secondary-two),
+    var(--color-tertiary-two)
+  );
+}
+.bg-linear4 {
+  background-image: linear-gradient(
+    var(--color-tertiary-two),
+    var(--color-secondary-two)
+  );
+}

@@ -1,0 +1,85 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.test {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 75svh;
+  width: 1000px;
+  border-radius: 10%;
+}
+
+#buffer {
+  min-height: 20svh;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+
+h3 {
+  text-align: center;
+  font-size: 28px;
+  margin: 20px 0px;
+  text-decoration: underline;
+}
+
+.movie-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 40px;
+  gap: 40px;
+}
+
+.movie-container h3 {
+  margin: 0px 0px 30px 50px;
+  align-self: flex-start;
+}
+
+.text-box {
+  display: flex;
+  flex-flow: column wrap;
+  align-self: flex-start;
+  max-width: 35%;
+  line-height: 30px;
+  font-size: 20px;
+}
+
+.img-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.line-md--loading-alt-loop {
+  display: inline-block;
+  width: 500px;
+  height: 425px;
+  border-radius: 15px;
+  color: aliceblue;
+  border: 3px solid rgba(133, 133, 133, 0.212);
+  padding: 0% 5%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-color: rgb(44, 44, 44);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='%23d0da3e'%3E%3Ccircle cx='12' cy='3.5' r='1.5'%3E%3CanimateTransform attributeName='transform' calcMode='discrete' dur='2.4s' repeatCount='indefinite' type='rotate' values='0 12 12;90 12 12;180 12 12;270 12 12'/%3E%3Canimate attributeName='opacity' dur='0.6s' repeatCount='indefinite' values='1;1;0'/%3E%3C/circle%3E%3Ccircle cx='12' cy='3.5' r='1.5' transform='rotate(30 12 12)'%3E%3CanimateTransform attributeName='transform' begin='0.2s' calcMode='discrete' dur='2.4s' repeatCount='indefinite' type='rotate' values='30 12 12;120 12 12;210 12 12;300 12 12'/%3E%3Canimate attributeName='opacity' begin='0.2s' dur='0.6s' repeatCount='indefinite' values='1;1;0'/%3E%3C/circle%3E%3Ccircle cx='12' cy='3.5' r='1.5' transform='rotate(60 12 12)'%3E%3CanimateTransform attributeName='transform' begin='0.4s' calcMode='discrete' dur='2.4s' repeatCount='indefinite' type='rotate' values='60 12 12;150 12 12;240 12 12;330 12 12'/%3E%3Canimate attributeName='opacity' begin='0.4s' dur='0.6s' repeatCount='indefinite' values='1;1;0'/%3E%3C/circle%3E%3C/g%3E%3C/svg%3E");
+}
