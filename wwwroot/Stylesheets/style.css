@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 .test {
@@ -18,8 +19,9 @@
   align-items: center;
   min-height: 75svh;
   max-width: 85%;
-  border-radius: 10%;
-  padding: 2rem 2rem;
+  border-radius: 2.5rem;
+  padding: 2rem;
+  margin: 2rem 0;
 }
 
 #buffer {
@@ -32,34 +34,32 @@ h1 {
 
 h2 {
   text-align: center;
-  font-size: 36px;
-  margin-bottom: 30px;
+  font-size: 2.7rem;
+  margin-bottom: 1rem;
 }
 
 h3 {
   text-align: center;
-  font-size: 28px;
+  font-size: 2.2rem;
   text-decoration: underline;
 }
 
 h4 {
-  font-size: 26px;
+  font-size: 2rem;
 }
 
 .img-txt-container {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
-  margin: 20px 10px;
-  gap: 40px;
+  margin: 1em 0.5em;
+  gap: 2rem;
   align-items: stretch;
 }
 
 .img-txt-container img {
-  min-height: 2rem;
-  min-width: 49%;
-  max-height: 50%;
-  max-width: 50%;
+  min-width: 40%;
+  max-height: 60%;
   border: 0.2rem solid rgba(133, 133, 133, 0.212);
   border-radius: 2rem;
 }
@@ -67,9 +67,9 @@ h4 {
 .text-box {
   display: flex;
   flex-flow: column wrap;
-  max-width: 40%;
+  max-width: 50%;
   line-height: 30px;
-  font-size: 20px;
+  font-size: 1.2rem;
   border: 0.2rem solid rgba(133, 133, 133, 0.212);
   border-radius: 2rem;
   padding: 1rem;
@@ -81,25 +81,115 @@ h4 {
   justify-content: center;
 }
 
+.img-container img {
+  min-width: 30%;
+}
+
 .movie-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 50%;
-  max-height: 50%;
-  min-width: 90%;
+  min-height: 40%;
+  min-width: 85%;
+  margin: 1rem;
 }
 
-.line-md--loading-alt-loop {
+.loading-placeholder {
   display: inline-block;
-  min-width: 75%;
-  height: 500px;
+  min-width: 800px;
+  min-height: 500px;
   border-radius: 15px;
   color: aliceblue;
   border: 3px solid rgba(133, 133, 133, 0.212);
   padding: 0% 5%;
+  margin-top: 0.5rem;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: rgb(44, 44, 44);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='%23d0da3e'%3E%3Ccircle cx='12' cy='3.5' r='1.5'%3E%3CanimateTransform attributeName='transform' calcMode='discrete' dur='2.4s' repeatCount='indefinite' type='rotate' values='0 12 12;90 12 12;180 12 12;270 12 12'/%3E%3Canimate attributeName='opacity' dur='0.6s' repeatCount='indefinite' values='1;1;0'/%3E%3C/circle%3E%3Ccircle cx='12' cy='3.5' r='1.5' transform='rotate(30 12 12)'%3E%3CanimateTransform attributeName='transform' begin='0.2s' calcMode='discrete' dur='2.4s' repeatCount='indefinite' type='rotate' values='30 12 12;120 12 12;210 12 12;300 12 12'/%3E%3Canimate attributeName='opacity' begin='0.2s' dur='0.6s' repeatCount='indefinite' values='1;1;0'/%3E%3C/circle%3E%3Ccircle cx='12' cy='3.5' r='1.5' transform='rotate(60 12 12)'%3E%3CanimateTransform attributeName='transform' begin='0.4s' calcMode='discrete' dur='2.4s' repeatCount='indefinite' type='rotate' values='60 12 12;150 12 12;240 12 12;330 12 12'/%3E%3Canimate attributeName='opacity' begin='0.4s' dur='0.6s' repeatCount='indefinite' values='1;1;0'/%3E%3C/circle%3E%3C/g%3E%3C/svg%3E");
+}
+
+@media (max-width: 769px) {
+  #content {
+    padding: 1rem;
+  }
+
+  #buffer {
+    min-height: 15svh;
+  }
+
+  .img-txt-container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
+  .text-box {
+    max-width: 90%;
+  }
+
+  .img-txt-container img {
+    min-width: 90%;
+  }
+
+  .loading-placeholder {
+    min-width: 550px;
+    min-height: 400px;
+  }
+}
+
+@media (max-width: 426px) {
+  #content {
+    border-radius: 2rem;
+    padding: 0.5rem 1rem;
+  }
+
+  #buffer {
+    min-height: 10svh;
+  }
+
+  .loading-placeholder {
+    min-width: 310px;
+    min-height: 280px;
+  }
+
+  .img-txt-container {
+    gap: 1rem;
+    min-width: 100%;
+  }
+
+  .img-txt-container img {
+    min-width: 100%;
+  }
+
+  .text-box {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 376px) {
+  .loading-placeholder {
+    min-width: 285px;
+    min-height: 245px;
+  }
+
+  #content {
+    margin: 1rem 0;
+  }
+}
+
+@media (max-width: 321px) {
+  #content {
+    padding: 0.2rem 0.5rem;
+    max-width: 95%;
+  }
+
+  #buffer {
+    min-height: 5svh;
+  }
+
+  .loading-placeholder {
+    min-width: 280px;
+    min-height: 240px;
+  }
 }
