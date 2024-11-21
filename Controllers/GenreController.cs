@@ -30,4 +30,13 @@ public class GenreController : ControllerBase
         return Ok(genre.ToGenreDto());
     }
 
+    [HttpPost]
+    public IActionResult CreateGenre([FromBody] CreateGenreRequestDto genreDto)
+    {
+        var genreModel = genreDto.ToGenreFromCreateDTO();
+        _context.Genres.Add(genreModel);
+        _context.SaveChanges();
+        return CreatedAtAction(nameof(GetGenreById), new {genreId = genreModel.GenreId}, genreModel.ToGenreDto());
+    }
+
 }

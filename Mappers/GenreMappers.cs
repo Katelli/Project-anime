@@ -8,4 +8,13 @@ public static class GenreMappers
             GenreName = genreModel.GenreName
         };
     }
+
+    public static Genre ToGenreFromCreateDTO(this CreateGenreRequestDto genreDto)
+    {
+        return new Genre
+        {
+            GenreName = genreDto.GenreName
+        };
+    }
+
 }
