@@ -6,6 +6,7 @@ public class Anime
     public int AnimeId { get; set; }
 
     //Need to find out what I should put here
+    public string? Img { get; set; } = string.Empty;
     public string Url { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
 }
