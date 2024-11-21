@@ -13,7 +13,8 @@ public class GenreController : ControllerBase
     [HttpGet]
     public IActionResult GetAllGenres()
     {
-        var genres = _context.Genres.ToList();
+        var genres = _context.Genres.ToList()
+        .Select(s => s.ToGenreDto());
         return Ok(genres);
     }
 
@@ -26,7 +27,7 @@ public class GenreController : ControllerBase
         {
             return NotFound();
         }
-        return Ok(genre);
+        return Ok(genre.ToGenreDto());
     }
 
 }
