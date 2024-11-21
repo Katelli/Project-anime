@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Project_anime.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20241118113840_init")]
-    partial class init
+    [Migration("20241121130039_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,6 +38,9 @@ namespace Project_anime.Migrations
                     b.Property<int?>("GenreId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Img")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -62,9 +65,6 @@ namespace Project_anime.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GenreId"));
 
                     b.Property<string>("GenreName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Img")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("GenreId");

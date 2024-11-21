@@ -35,6 +35,9 @@ namespace Project_anime.Migrations
                     b.Property<int?>("GenreId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Img")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -59,9 +62,6 @@ namespace Project_anime.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GenreId"));
 
                     b.Property<string>("GenreName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Img")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("GenreId");

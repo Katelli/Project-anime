@@ -39,4 +39,20 @@ public class GenreController : ControllerBase
         return CreatedAtAction(nameof(GetGenreById), new {genreId = genreModel.GenreId}, genreModel.ToGenreDto());
     }
 
+    [HttpPut]
+    [Route("{genreId}")]
+    public IActionResult UpdateGenre([FromRoute] int genreId, [FromBody] UpdateGenreRequestDto updateGenreDto)
+    {
+        var genreModel = _context.Genres.FirstOrDefault(x => x.GenreId == genreId);
+
+        if(genreModel == null)
+        {
+            return NotFound();
+        }
+
+        genreModel.GenreName = updateGenreDto.GenreName;
+        _context.SaveChanges();
+        return Ok(genreModel.ToGenreDto());
+    }
+
 }
