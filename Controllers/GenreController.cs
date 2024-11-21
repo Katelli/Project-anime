@@ -55,4 +55,20 @@ public class GenreController : ControllerBase
         return Ok(genreModel.ToGenreDto());
     }
 
+    [HttpDelete]
+    [Route("{genreId}")]
+    public IActionResult DeleteGenre([FromRoute] int genreId)
+    {
+        var genreModel = _context.Genres.FirstOrDefault(x => x.GenreId == genreId);
+
+        if(genreModel == null)
+        {
+            return NotFound();
+        }
+
+        _context.Genres.Remove(genreModel);
+        _context.SaveChanges();
+        return NoContent();
+    }
+
 }
