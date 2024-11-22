@@ -20,6 +20,8 @@ public class Program
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
         });
 
+        builder.Services.AddScoped<IGenreRepository, GenreRepository>();
+
         var app = builder.Build();
 
         app.UseStaticFiles();
