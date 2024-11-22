@@ -31,12 +31,12 @@ public class GenreRepository : IGenreRepository
 
     public async Task<List<Genre>> GetAllGenresAsync()
     {
-        return await _context.Genres.ToListAsync();
+        return await _context.Genres.Include(a => a.Animes).ToListAsync();
     }
 
     public async Task<Genre?> GetGenreByIdAsync(int genreId)
     {
-        return await _context.Genres.FindAsync(genreId);
+        return await _context.Genres.Include(a => a.Animes).FirstOrDefaultAsync(i => i.GenreId == genreId);
     }
 
     public async Task<Genre?> UpdateGenreAsync(int genreId, UpdateGenreRequestDto genreDto)

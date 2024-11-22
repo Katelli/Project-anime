@@ -5,7 +5,8 @@ public static class GenreMappers
         return new GenreDto
         {
             GenreId = genreModel.GenreId,
-            GenreName = genreModel.GenreName
+            GenreName = genreModel.GenreName,
+            Animes = genreModel.Animes.Select(a => a.ToAnimeDto()).ToList()
         };
     }
 

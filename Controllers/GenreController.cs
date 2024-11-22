@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -43,7 +42,7 @@ public class GenreController : ControllerBase
         var genreModel = genreDto.ToGenreFromCreateDTO();
 
         await _genreRepo.CreateGenreAsync(genreModel);
-        
+
         return CreatedAtAction(nameof(GetGenreById), new {genreId = genreModel.GenreId}, genreModel.ToGenreDto());
     }
 
