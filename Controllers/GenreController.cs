@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -11,18 +12,19 @@ public class GenreController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult GetAllGenres()
+    public async Task<IActionResult> GetAllGenres()
     {
-        var genres = _context.Genres.ToList()
-        .Select(s => s.ToGenreDto());
-        return Ok(genres);
+        var genres = await _context.Genres.ToListAsync();
+        
+        var genreDto = genres.Select(s => s.ToGenreDto());
+        return Ok(genreDto);
     }
 
     [HttpGet("{genreId}")]
-    public IActionResult GetGenreById([FromRoute] int genreId)
+    public async Task<IActionResult> GetGenreById([FromRoute] int genreId)
     {
 
-        var genre = _context.Genres.Find(genreId);
+        var genre = await _context.Genres.FindAsync(genreId);
         if(genre == null)
         {
             return NotFound();
@@ -31,19 +33,19 @@ public class GenreController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult CreateGenre([FromBody] CreateGenreRequestDto genreDto)
+    public async Task<IActionResult> CreateGenre([FromBody] CreateGenreRequestDto genreDto)
     {
         var genreModel = genreDto.ToGenreFromCreateDTO();
-        _context.Genres.Add(genreModel);
-        _context.SaveChanges();
+        await _context.Genres.AddAsync(genreModel);
+        await _context.SaveChangesAsync();
         return CreatedAtAction(nameof(GetGenreById), new {genreId = genreModel.GenreId}, genreModel.ToGenreDto());
     }
 
     [HttpPut]
     [Route("{genreId}")]
-    public IActionResult UpdateGenre([FromRoute] int genreId, [FromBody] UpdateGenreRequestDto updateGenreDto)
+    public async Task<IActionResult> UpdateGenre([FromRoute] int genreId, [FromBody] UpdateGenreRequestDto updateGenreDto)
     {
-        var genreModel = _context.Genres.FirstOrDefault(x => x.GenreId == genreId);
+        var genreModel = await _context.Genres.FirstOrDefaultAsync(x => x.GenreId == genreId);
 
         if(genreModel == null)
         {
@@ -51,15 +53,15 @@ public class GenreController : ControllerBase
         }
 
         genreModel.GenreName = updateGenreDto.GenreName;
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
         return Ok(genreModel.ToGenreDto());
     }
 
     [HttpDelete]
     [Route("{genreId}")]
-    public IActionResult DeleteGenre([FromRoute] int genreId)
+    public async Task<IActionResult> DeleteGenre([FromRoute] int genreId)
     {
-        var genreModel = _context.Genres.FirstOrDefault(x => x.GenreId == genreId);
+        var genreModel = await _context.Genres.FirstOrDefaultAsync(x => x.GenreId == genreId);
 
         if(genreModel == null)
         {
@@ -67,7 +69,7 @@ public class GenreController : ControllerBase
         }
 
         _context.Genres.Remove(genreModel);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
         return NoContent();
     }
 
