@@ -19,6 +19,7 @@ classDiagram
     }
     class GenreController {
         +handleRequest()
+        +HttpRequests(CRUD)
         +sendResponse
     }
     API --> GenreController
@@ -46,6 +47,7 @@ classDiagram
     GenreService --> GenreModel
 
     class GenreRepository {
+        <<Repository>>
         +IGenreRepository
         +find()
         +save()
@@ -54,7 +56,8 @@ classDiagram
 
     class AnimeController {
         +handleRequest()
-        +sendResponse()
+        +HttpRequests(CRUD)
+        +sendResponse
     }
     API --> AnimeController
 
@@ -81,6 +84,7 @@ classDiagram
     AnimeService --> AnimeMapper
 
     class AnimeRepository {
+        <<Repository>>
         +IAnimeRepository
         +find()
         +save()
