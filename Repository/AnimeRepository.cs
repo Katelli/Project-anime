@@ -6,6 +6,14 @@ public class AnimeRepository : IAnimeRepository
     {
         _context = context;
     }
+
+    public async Task<Anime> CreateAnimeAsync(Anime animeModel)
+    {
+        await _context.Animes.AddAsync(animeModel);
+        await _context.SaveChangesAsync();
+        return animeModel;
+    }
+
     public async Task<List<Anime>> GetAllAnimesAsync()
     {
         return await _context.Animes.ToListAsync();

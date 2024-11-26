@@ -12,4 +12,15 @@ public static class AnimeMappers
             Description = animeModel.Description
         };
     }
+    public static Anime ToAnimeFromCreateDTO(this CreateAnimeRequestDto animeDto, int genreId)
+    {
+        return new Anime
+        {
+            Name = animeDto.Name,
+            GenreId = genreId,
+            Img = animeDto.Img,
+            Url = animeDto.Url,
+            Description = animeDto.Description
+        };
+    }
 } 

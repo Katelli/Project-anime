@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 public class AnimeController : ControllerBase
 {
     private readonly IAnimeRepository _animeRepo;
-    public AnimeController(IAnimeRepository animeRepo)
+    private readonly IGenreRepository _genreRepo;
+    public AnimeController(IAnimeRepository animeRepo, IGenreRepository genreRepo)
     {
         _animeRepo = animeRepo;
+        _genreRepo = genreRepo;
     }
 
     [HttpGet]
@@ -32,5 +34,20 @@ public class AnimeController : ControllerBase
         }
 
         return Ok(anime.ToAnimeDto());
+    }
+
+    [HttpPost("{genreId}")]
+    public async Task<IActionResult> CreateAnime([FromRoute] int genreId, CreateAnimeRequestDto animeDto)
+    {
+        if(!await _genreRepo.GenreExists(genreId))
+        {
+            return BadRequest("Genre does not exist");
+        }
+
+        var animeModel = animeDto.ToAnimeFromCreateDTO(genreId);
+
+        await _animeRepo.CreateAnimeAsync(animeModel);
+
+        return CreatedAtAction(nameof(GetAnimeById), new {animeId = animeModel.AnimeId}, animeModel.ToAnimeDto());
     }
 }

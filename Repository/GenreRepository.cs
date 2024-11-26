@@ -29,6 +29,11 @@ public class GenreRepository : IGenreRepository
         return genreModel;
     }
 
+    public Task<bool> GenreExists(int genreId)
+    {
+        return _context.Genres.AnyAsync(g => g.GenreId == genreId);
+    }
+
     public async Task<List<Genre>> GetAllGenresAsync()
     {
         return await _context.Genres.Include(a => a.Animes).ToListAsync();
