@@ -64,4 +64,18 @@ public class AnimeController : ControllerBase
 
         return Ok(anime.ToAnimeDto());
     }
+
+    [HttpDelete]
+    [Route("{animeId}")]
+    public async Task<IActionResult> DeleteAnime([FromRoute] int animeId)
+    {
+        var animeModel = await _animeRepo.DeleteAnimeAsync(animeId);
+
+        if(animeModel == null)
+        {
+            return NotFound();
+        }
+
+        return NoContent();
+    }
 }

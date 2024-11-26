@@ -14,6 +14,21 @@ public class AnimeRepository : IAnimeRepository
         return animeModel;
     }
 
+    public async Task<Anime?> DeleteAnimeAsync(int animeId)
+    {
+        var animeModel = await _context.Animes.FirstOrDefaultAsync(x => x.AnimeId == animeId);
+
+        if(animeModel == null)
+        {
+            return null;
+        }
+
+        _context.Animes.Remove(animeModel);
+        await _context.SaveChangesAsync();
+
+        return animeModel;
+    }
+
     public async Task<List<Anime>> GetAllAnimesAsync()
     {
         return await _context.Animes.ToListAsync();
