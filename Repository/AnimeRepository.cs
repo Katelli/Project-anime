@@ -23,4 +23,23 @@ public class AnimeRepository : IAnimeRepository
     {
         return await _context.Animes.FindAsync(animeId);
     }
+
+    public async Task<Anime?> UpdateAnimeAsync(int animeId, Anime animeModel)
+    {
+        var existingAnime = await _context.Animes.FindAsync(animeId);
+
+        if(existingAnime == null)
+        {
+            return null;
+        }
+
+        existingAnime.Name = animeModel.Name;
+        existingAnime.Img = animeModel.Img;
+        existingAnime.Url = animeModel.Url;
+        existingAnime.Description = animeModel.Description;
+        
+        await _context.SaveChangesAsync();
+
+        return existingAnime;
+    }
 }

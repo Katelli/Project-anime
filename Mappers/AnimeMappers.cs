@@ -23,4 +23,16 @@ public static class AnimeMappers
             Description = animeDto.Description
         };
     }
+
+    public static Anime ToAnimeFromUpdateDTO(this UpdateAnimeRequestDto animeDto)
+    {
+        return new Anime
+        {
+            Name = animeDto.Name,
+            Img = animeDto.Img,
+            Url = animeDto.Url,
+            Description = animeDto.Description
+        };
+
+    }
 } 

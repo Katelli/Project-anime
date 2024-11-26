@@ -54,6 +54,7 @@ public class GenreRepository : IGenreRepository
         }
 
         existingGenre.GenreName = genreDto.GenreName;
+        
         await _context.SaveChangesAsync();
 
         return existingGenre;

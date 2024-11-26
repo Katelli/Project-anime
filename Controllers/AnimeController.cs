@@ -50,4 +50,18 @@ public class AnimeController : ControllerBase
 
         return CreatedAtAction(nameof(GetAnimeById), new {animeId = animeModel.AnimeId}, animeModel.ToAnimeDto());
     }
+
+    [HttpPut]
+    [Route("{animeId}")]
+    public async Task<IActionResult> UpdateAnime([FromRoute] int animeId, [FromBody] UpdateAnimeRequestDto updateAnimeDto)
+    {
+        var anime = await _animeRepo.UpdateAnimeAsync(animeId, updateAnimeDto.ToAnimeFromUpdateDTO());
+
+        if(anime == null)
+        {
+            return NotFound("Anime not found");
+        }
+
+        return Ok(anime.ToAnimeDto());
+    }
 }
