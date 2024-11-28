@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-[Route("api/[controller]")]
+[Route("api/genre")]
 [ApiController]
 public class GenreController : ControllerBase
 {
@@ -15,6 +15,9 @@ public class GenreController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAllGenres()
     {
+        if(!ModelState.IsValid)
+            return BadRequest(ModelState);
+        
         var genres = await _genreRepo.GetAllGenresAsync();
         
         var genreDto = genres.Select(s => s.ToGenreDto());
@@ -22,9 +25,11 @@ public class GenreController : ControllerBase
         return Ok(genreDto);
     }
 
-    [HttpGet("{genreId}")]
+    [HttpGet("{genreId:int}")]
     public async Task<IActionResult> GetGenreById([FromRoute] int genreId)
     {
+        if(!ModelState.IsValid)
+            return BadRequest(ModelState);
 
         var genre = await _genreRepo.GetGenreByIdAsync(genreId);
 
@@ -39,6 +44,9 @@ public class GenreController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateGenre([FromBody] CreateGenreRequestDto genreDto)
     {
+        if(!ModelState.IsValid)
+            return BadRequest(ModelState);
+        
         var genreModel = genreDto.ToGenreFromCreateDTO();
 
         await _genreRepo.CreateGenreAsync(genreModel);
@@ -47,9 +55,12 @@ public class GenreController : ControllerBase
     }
 
     [HttpPut]
-    [Route("{genreId}")]
+    [Route("{genreId:int}")]
     public async Task<IActionResult> UpdateGenre([FromRoute] int genreId, [FromBody] UpdateGenreRequestDto updateGenreDto)
     {
+        if(!ModelState.IsValid)
+            return BadRequest(ModelState);
+        
         var genreModel = await _genreRepo.UpdateGenreAsync(genreId, updateGenreDto);
 
         if(genreModel == null)
@@ -61,9 +72,12 @@ public class GenreController : ControllerBase
     }
 
     [HttpDelete]
-    [Route("{genreId}")]
+    [Route("{genreId:int}")]
     public async Task<IActionResult> DeleteGenre([FromRoute] int genreId)
     {
+        if(!ModelState.IsValid)
+            return BadRequest(ModelState);
+        
         var genreModel = await _genreRepo.DeleteGenreAsync(genreId);
 
         if(genreModel == null)
